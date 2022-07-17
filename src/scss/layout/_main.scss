@@ -1,0 +1,29 @@
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  text-transform: uppercase;
+  margin-top: 10px;
+
+  .colors {
+    background-color: black;
+    color: white;
+    width: 300px;
+    height: 375px;
+    margin-top: 30px;
+
+    .series {
+      text-align: center;
+      padding-top: 15px;
+
+      .title {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .favorite {
+    background-color: white;
+    color: black;
+  }
+}
