@@ -5,14 +5,23 @@
   text-transform: uppercase;
   margin-top: 10px;
 
+  .common-sections {
+    width: 350px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: rgb(250, 250, 250);
+    height: 700px;
+    overflow-y: scroll;
+    border-radius: 4px;
+  }
+
   .js-fav-list-container {
     text-align: center;
     .reset-favorites {
       margin-top: 25px;
-      border: 2px solid #3abef2;
-      border-radius: 3px;
-      height: 25px;
-      cursor: pointer;
+      width: 100%;
     }
   }
 
@@ -21,10 +30,11 @@
   }
 
   .colors {
-    background-color: #000;
+    background-color: rgb(36, 104, 97);
     color: white;
     width: 300px;
     padding: 15px 0px 35px 0;
+    margin: auto;
     margin-top: 30px;
     position: relative;
     border: none;
@@ -36,6 +46,8 @@
 
     .title {
       margin-bottom: 10px;
+      max-width: 280px;
+      line-height: 24px;
     }
 
     .close-favorite-icon {
@@ -44,8 +56,8 @@
       right: 8px;
       padding: 5px;
       cursor: pointer;
-      background: white;
-      color: black;
+      background: #0172aa;
+      color: white;
       border-radius: 50%;
       padding: 3px 6px;
       font-size: 14px;
@@ -56,5 +68,17 @@
     background-color: #fff;
     color: black;
     border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .section-header {
+    background: white;
+    height: 45px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    line-height: 45px;
+    border-radius: 4px;
+    width: 300px;
+    margin-left: 25px;
+    font-size: 22px;
+    opacity: 0.7;
   }
 }

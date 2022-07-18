@@ -1,0 +1,23 @@
+body {
+  font-family: "Roboto";
+}
+
+.btn {
+  height: 35px;
+  padding: 5px 20px;
+  border: none;
+  background-color: #0172aa;
+  border-radius: 4px;
+  color: #fff;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
+}
+
+.input-common {
+  height: 35px;
+  border: 1px solid rgba($color: #000000, $alpha: 0.1);
+  border-radius: 4px;
+  padding-left: 15px;
+}

@@ -62,7 +62,7 @@ const renderFavorites = () => {
 
 
     if (favorites && favorites.length > 0) {
-        favsContainer.innerHTML += `<button class="reset-favorites" id="reset-favorites">Reset favorites</button>`
+        favsContainer.innerHTML += `<button class="reset-favorites btn" id="reset-favorites">Reset favorites</button>`
 
         const favoriteBtn = document.getElementById('reset-favorites');
         favoriteBtn.addEventListener('click', handleResetFavorites);
@@ -93,7 +93,7 @@ const removeFavorite = (event) => {
 const getHtmlForCard = (serie, isSerieList, isFavorite) => {
 
     const htmlForCard = `
-    <div class="colors${isFavorite ? ' favorite' : ''}" id="${isSerieList ? '' : 'favorite-'}${serie.mal_id}">
+    <div class="colors${isFavorite || !isSerieList  ? ' favorite' : ''}" id="${isSerieList ? '' : 'favorite-'}${serie.mal_id}">
         <div class="series">
             <h3 class="title">${serie.title}</h3>
             <img class="image" src="${serie.images.jpg.image_url}" alt="imagen de ${serie.title}">
