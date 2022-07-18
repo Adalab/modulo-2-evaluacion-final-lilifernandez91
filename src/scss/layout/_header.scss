@@ -1,15 +1,28 @@
 .header {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
   .h1 {
     margin-top: 30px;
+    margin-left: 30px;
     text-transform: uppercase;
+    color: #3abef2;
   }
 
   .div-header {
     margin: 30px;
+
+    .item {
+      border: 2px solid #3abef2;
+      border-radius: 3px;
+      height: 25px;
+      cursor: pointer;
+    }
+
+    .name {
+      width: 250px;
+      height: 20px;
+    }
   }
 }
