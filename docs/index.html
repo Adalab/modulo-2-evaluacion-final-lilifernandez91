@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./assets/css/reset.css">
   <link rel="stylesheet" href="./assets/css/main.css">
   <script src="https://kit.fontawesome.com/6c4bd50c50.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700" rel="stylesheet">
 </head>
 
 <body>
@@ -15,19 +16,19 @@
   <header class="header">
       <h1 class="h1">buscador de series de anime</h1>
       <div class="div-header">
-          <input type="text" placeholder="Nombre de la serie" class="js-name-serie item name">
-          <button class="js-button-search item">Buscar</button>
-          <button class="item js-reset-item">Reset</button>
+          <input type="text" placeholder="Nombre de la serie" class="js-name-serie input-common name">
+          <button class="js-button-search btn">Buscar</button>
+          <button class="js-reset-item btn">Reset</button>
       </div>
   </header>
 
   <main class="main">
-      <section>
-          <h2>series favoritas</h2>
+      <section class="favorites-section common-sections">
+          <h2 class="section-header">series favoritas</h2>
           <div class="js-fav-list-container"></div>
       </section>
-      <section>
-          <h2>resultados</h2>
+      <section class="series-list-section common-sections">
+          <h2 class="section-header">resultados</h2>
           <div class="js-list-container"></div>
       </section>
   </main>
