@@ -93,9 +93,9 @@ const removeFavorite = (event) => {
 const getHtmlForCard = (serie, isSerieList, isFavorite) => {
 
     const htmlForCard = `
-    <div class="colors ${isFavorite ? 'favorite' : ''}" id="${isSerieList ? '' : 'favorite-'}${serie.mal_id}">
+    <div class="colors${isFavorite ? ' favorite' : ''}" id="${isSerieList ? '' : 'favorite-'}${serie.mal_id}">
         <div class="series">
-            <h3 class="title">Cowboy Bebop</h3>
+            <h3 class="title">${serie.title}</h3>
             <img class="image" src="${serie.images.jpg.image_url}" alt="imagen de ${serie.title}">
         </div>
         ${isSerieList ? '' : `<i class="fa-solid fa-xmark close-favorite-icon" id="close-favorite-${serie.mal_id}"></i>`}
