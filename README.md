@@ -11,7 +11,7 @@ npm install
 
 ```
 
-Luego de que todos los paquetes se instalen levantamos el proyecto:
+## Luego de que todos los paquetes se instalen levantamos el proyecto:
 
 ```
 npm start

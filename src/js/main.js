@@ -1,6 +1,6 @@
 'use strict';
 
-//1- Obtener elementos del html y asignar a la constante
+//Obtener elementos del html y asignar a la constante
 const buttonSearch = document.querySelector(`.js-button-search`);
 const listContainer = document.querySelector(`.js-list-container`);
 const favsContainer = document.querySelector(`.js-fav-list-container`);
@@ -10,36 +10,35 @@ const resetItem = document.querySelector(`.js-reset-item`);
 let seriesList = [];
 let favorites = [];
 
-//3- Función manejadora del evento Search
+//Función manejadora del evento 
 const handleSearch = (event) => {
     event.preventDefault();
     search(nameSerie.value);
 };
 
-// Función manejadora del evento Search
+//Función manejadora del evento 
 const handleReset = (event) => {
     event.preventDefault();
     nameSerie.value = '';
     search('');
 };
 
-//2- El botón escucha el evento click y ejecuta la función
+//El botón escucha el evento click y ejecuta la función
 buttonSearch.addEventListener(`click`, handleSearch);
 resetItem.addEventListener(`click`, handleReset);
 
-//4- Obtener datos del servidor
+//Obtener datos del servidor
 const search = (nameTextSerie) => {
     fetch(`https://api.jikan.moe/v4/anime?q=${nameTextSerie}`)
         .then((response) => response.json())
         .then((data) => {
             seriesList = data.data;
 
-            // obtener los favoritos desde el local storage
+            //Obtener los favoritos desde el local storage
             getFavoritesFromLocalStorage();
 
-            //5- llamar a la funcion para renderizar los resultados (las series)
+            //Llamar a la funcion para renderizar los resultados (las series)
             renderResultList();
-
             renderFavorites();
         });
 };
@@ -60,7 +59,6 @@ const renderFavorites = () => {
     }, 100);
 
 
-
     if (favorites && favorites.length > 0) {
         favsContainer.innerHTML += `<button class="reset-favorites btn" id="reset-favorites">Reset favorites</button>`
 
@@ -70,7 +68,7 @@ const renderFavorites = () => {
 }
 
 const handleResetFavorites = () => {
-    // reset favorites removing elements from favorites list and from local storage
+    //restablecer favoritos eliminando elementos de la lista de favoritos y del almacenamiento local
     favorites = [];
     localStorage.setItem('favorites', JSON.stringify([]));
 
@@ -89,7 +87,7 @@ const removeFavorite = (event) => {
     renderFavorites();
 }
 
-//8- Función para pintar una serie
+//Función para pintar una serie
 const getHtmlForCard = (serie, isSerieList, isFavorite) => {
 
     const htmlForCard = `
@@ -107,31 +105,30 @@ const getHtmlForCard = (serie, isSerieList, isFavorite) => {
 };
 
 const renderResultList = () => {
-    //6- limpia la búsqueda anterior
+    //limpia la búsqueda anterior
     listContainer.innerHTML = '';
 
-    //7- Iterar listado de series para renderizarla en la pantalla
+    //7Iterar listado de series para renderizarla en la pantalla
     for (const serie of seriesList) {
 
-        // para cada serie verificar si ya está en nuestra lista de favoritos
+        //Para cada serie verificar si ya está en nuestra lista de favoritos
         const favoriteFoundIndex = favorites.findIndex((fav) => serie.mal_id === fav.mal_id);
 
-        // si el índice es distinto de -1 es que no está en la lista
+        //Si el índice es distinto de -1 es que no está en la lista
         const isFavorite = favoriteFoundIndex !== -1;
 
-        // obtener el html para cada serie
+        //Obtener el html para cada serie
         listContainer.innerHTML += getHtmlForCard(serie, true, isFavorite);
     }
 
-    // iterar el listado de series para agregarle el eventListener para manejar los favoritos
-
+    //Iterar el listado de series para agregarle el eventListener para manejar los favoritos
     for (const serie of seriesList) {
         const divCurrentSerie = document.getElementById(serie.mal_id);
         divCurrentSerie.addEventListener('click', handleFavorite);
     }
 }
 
-//Función manejadora del evento Favorite
+//Función manejadora del evento favorite
 const handleFavorite = (event) => {
     event.preventDefault();
     const idSelected = parseInt(event.currentTarget.id);
@@ -141,10 +138,10 @@ const handleFavorite = (event) => {
     if (serieFound) {
         document.getElementById(serieFound.mal_id).classList.toggle('favorite')
 
-        // ver si el favorito ya está agregado a la lista
+        //Ver si el favorito ya está agregado a la lista
         const favoriteFound = favorites.findIndex((fav) => fav.mal_id === serieFound.mal_id);
 
-        // si se obtiene -1 es que no está y lo agregamos, caso contrario lo eliminamos de la lista.
+        //Si se obtiene -1 es que no está y lo agregamos, caso contrario lo eliminamos de la lista.
         if (favoriteFound === -1) {
             favorites.push(serieFound);
         } else {
