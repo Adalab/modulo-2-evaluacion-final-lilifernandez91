@@ -1,6 +1,6 @@
 'use strict';
 
-//Obtener elementos del html y asignar a la constante
+//1- Obtener elementos del html y asignar a la constante
 const buttonSearch = document.querySelector(`.js-button-search`);
 const listContainer = document.querySelector(`.js-list-container`);
 const favsContainer = document.querySelector(`.js-fav-list-container`);
@@ -10,24 +10,24 @@ const resetItem = document.querySelector(`.js-reset-item`);
 let seriesList = [];
 let favorites = [];
 
-//Función manejadora del evento Search
+//3- Función manejadora del evento Search
 const handleSearch = (event) => {
     event.preventDefault();
     search(nameSerie.value);
 };
 
-//Función manejadora del evento Search
+// Función manejadora del evento Search
 const handleReset = (event) => {
     event.preventDefault();
     nameSerie.value = '';
     search('');
 };
 
-//El botón escucha el evento click y ejecuta la función handleSearch
+//2- El botón escucha el evento click y ejecuta la función
 buttonSearch.addEventListener(`click`, handleSearch);
 resetItem.addEventListener(`click`, handleReset);
 
-//Obtener datos del servidor
+//4- Obtener datos del servidor
 const search = (nameTextSerie) => {
     fetch(`https://api.jikan.moe/v4/anime?q=${nameTextSerie}`)
         .then((response) => response.json())
@@ -37,7 +37,7 @@ const search = (nameTextSerie) => {
             // obtener los favoritos desde el local storage
             getFavoritesFromLocalStorage();
 
-            // llamar a la funcion para renderizar los resultados (las series)
+            //5- llamar a la funcion para renderizar los resultados (las series)
             renderResultList();
 
             renderFavorites();
@@ -48,7 +48,7 @@ const renderFavorites = () => {
     favsContainer.innerHTML = '';
 
     for (const favorite of favorites) {
-        favsContainer.innerHTML += getHtmlForCard(favorite, false, false);
+        favsContainer.innerHTML += getHtmlForCard(favorite, false, true);
     }
 
     setTimeout(() => {
@@ -89,27 +89,28 @@ const removeFavorite = (event) => {
     renderFavorites();
 }
 
-//Función para pintar una serie
+//8- Función para pintar una serie
 const getHtmlForCard = (serie, isSerieList, isFavorite) => {
 
     const htmlForCard = `
-    <div class="colors${isFavorite || !isSerieList  ? ' favorite' : ''}" id="${isSerieList ? '' : 'favorite-'}${serie.mal_id}">
+    <div class="colors${isFavorite === true ? ' favorite' : ''}" id="${isSerieList ? '' : 'favorite-'}${serie.mal_id}">
         <div class="series">
             <h3 class="title">${serie.title}</h3>
             <img class="image" src="${serie.images.jpg.image_url}" alt="imagen de ${serie.title}">
         </div>
-        ${isSerieList ? '' : `<i class="fa-solid fa-xmark close-favorite-icon" id="close-favorite-${serie.mal_id}"></i>`}
-        
+        ${isSerieList === true ? 
+            '' : 
+            `<i class="fa-solid fa-xmark close-favorite-icon" id="close-favorite-${serie.mal_id}"></i>`}
     </div>
     `;
     return htmlForCard;
 };
 
 const renderResultList = () => {
-    // clean results div in case we have old series
+    //6- limpia la búsqueda anterior
     listContainer.innerHTML = '';
 
-    //Iterar listado de series para renderizarla en la pantalla
+    //7- Iterar listado de series para renderizarla en la pantalla
     for (const serie of seriesList) {
 
         // para cada serie verificar si ya está en nuestra lista de favoritos
@@ -132,7 +133,6 @@ const renderResultList = () => {
 
 //Función manejadora del evento Favorite
 const handleFavorite = (event) => {
-
     event.preventDefault();
     const idSelected = parseInt(event.currentTarget.id);
 
